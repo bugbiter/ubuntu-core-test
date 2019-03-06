@@ -8,7 +8,9 @@ description: |
 
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
-
+architectures:
+  - build-on: armhf
+    run-on: armhf
 apps:
   iot-labs-uc-test:
     command: bin/hello
