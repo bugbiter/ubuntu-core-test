@@ -20,3 +20,4 @@ parts:
     plugin: python
     python-version: python3
     python-packages: [RPi.GPIO]
+    source: https://github.com/bugbiter/python-rpi-test.git
