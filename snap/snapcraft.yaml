@@ -11,9 +11,12 @@ architectures:
   - build-on: armhf
     run-on: armhf
 apps:
-  iot-labs-uc-test:
-    command: bin/hello
+  test:
+    command: bin/test
+    daemon: simple
+    plugs: [gpio-memory-control] 
 parts:
-  gnu-hello:
-    source: http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz
-    plugin: autotools
+  setup:
+    plugin: python
+    python-version: python3
+    python-packages: [RPi.GPIO]
