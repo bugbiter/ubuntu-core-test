@@ -5,7 +5,6 @@ description: |
   Test snap for Ubuntu Core on a Raspberry Pi 3b+.
   Attempt to read gpio and publish telemetry to Google Cloud Iot Core via
   MQTT bridge.
-grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
 architectures:
   - build-on: armhf
@@ -20,4 +19,4 @@ parts:
     plugin: python
     python-version: python3
     python-packages: [RPi.GPIO]
-    source: https://github.com/bugbiter/python-rpi-test.git
+    source: https://github.com/bugbiter/python-rpi-test
