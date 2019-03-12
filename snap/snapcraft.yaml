@@ -11,7 +11,7 @@ architectures:
     run-on: armhf
 apps:
   test:
-    command: bin/test
+    command: test
     daemon: simple
     plugs: [gpio-memory-control] 
 parts:
@@ -19,4 +19,4 @@ parts:
     plugin: python
     python-version: python3
     python-packages: [RPi.GPIO]
-    source: https://github.com/bugbiter/python-rpi-test
+    source: .
