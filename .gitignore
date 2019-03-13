@@ -2,4 +2,4 @@
 .vscode
 /parts
 /prime
-/stage/.snapcraft
+/snap/.snapcraft
