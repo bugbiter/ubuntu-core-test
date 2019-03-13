@@ -21,7 +21,7 @@ def main():
     #    GPIO.output(0, on)
     #    on = not on
         val = GPIO.input(21)
-        print("GPIO21 = %i", val)
+        print("GPIO21 = {}",format(val))
         time.sleep(1)
 
 if __name__ == '__main__':

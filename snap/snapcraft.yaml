@@ -14,13 +14,13 @@ architectures:
     run-on: armhf
 
 apps:
-  test:
+  iot-labs-uc-test:
     command: test
     # daemon: simple
     plugs: [gpio-memory-control] 
 
 parts:
-  test:
+  testpart:
     plugin: python
     python-version: python3
     python-packages: [RPi.GPIO]
