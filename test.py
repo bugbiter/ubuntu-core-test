@@ -12,7 +12,7 @@ def main():
     # Set up PIN 21 as input
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
-    GPIO.setup(0, GPIO.IN)	
+    GPIO.setup(21, GPIO.IN)	
 
     #on = True
 
