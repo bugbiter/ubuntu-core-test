@@ -17,7 +17,7 @@ apps:
   iot-labs-uc-test:
     command: test
     # daemon: simple
-    plugs: [gpio-memory-control] 
+    plugs: [gpio-memory-control, io-ports-control] 
 
 parts:
   testpart:
@@ -25,3 +25,4 @@ parts:
     python-version: python3
     python-packages: [RPi.GPIO]
     source: .
+    #stage-packages: [libdb-5.3.so]
