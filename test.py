@@ -20,8 +20,8 @@ def telemetry(project_id, topic_name):
     GPIO.setwarnings(False)
     GPIO.setup(21, GPIO.IN)	
 
-    project_id = "appliedautonomybackend"
-    topic_name = "iot-test-topic"
+    #project_id = "appliedautonomybackend"
+    #topic_name = "test-iot-topic"
     
     publisher = pubsub_v1.PublisherClient()
     subscriber = pubsub_v1.SubscriberClient()
