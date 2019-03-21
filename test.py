@@ -11,7 +11,10 @@ def telemetry(project_id, topic_name):
     from google.cloud import pubsub_v1
     import RPi.GPIO as GPIO
     import time
+    import os
     
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "pubsubcredentials.json"
+
     # Set up PIN 21 as input
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
