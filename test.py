@@ -46,7 +46,7 @@ def telemetry(project_id, topic_name):
         data = data.encode('utf-8')
         # When you publish a message, the client returns a future.
         message_future = publisher.publish(
-            topic_path, data=data, timestamp=time.time(), description='IoT test GPIO telemetry')
+            topic_path, data=data) #, timestamp=time.time(), description='IoT test GPIO telemetry')
         message_future.add_done_callback(callback)
         print('Published {} of message ID {}.'.format(data, message_future.result()))    
         time.sleep(1)
