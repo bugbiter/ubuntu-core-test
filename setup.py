@@ -3,10 +3,8 @@
 
 from setuptools import setup
 
-
 package_name = 'test'
 filename = package_name + '.py'
-
 
 def get_version():
     import ast
@@ -16,14 +14,12 @@ def get_version():
             if line.startswith('__version__'):
                 return ast.parse(line).body[0].value.s
 
-
 def get_long_description():
     try:
         with open('README.md', 'r') as f:
             return f.read()
     except IOError:
         return ''
-
 
 setup(
     name=package_name,

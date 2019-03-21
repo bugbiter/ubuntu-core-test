@@ -15,14 +15,16 @@ architectures:
 
 apps:
   iot-labs-uc-test:
-    command: test
+    command: bin/test
     # daemon: simple
-    plugs: [gpio-memory-control, io-ports-control] 
+    plugs: [gpio-memory-control] 
 
 parts:
   testpart:
     plugin: python
     python-version: python3
-    python-packages: [RPi.GPIO]
+    python-packages: [RPi.GPIO, google-cloud-pubsub==0.39.1]
     source: .
-    #stage-packages: [libdb-5.3.so]
+    override-build: |
+      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+      cp test $SNAPCRAFT_PART_INSTALL/bin/test

@@ -1,24 +1,66 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-import RPi.GPIO as GPIO
-import time
+import argparse
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
-def main():
-    print("Starting python-rpi-test")
+def telemetry(project_id, topic_name, subscription_name):
+    # [START telemetry]
+    from google.cloud import pubsub_v1
+    import RPi.GPIO as GPIO
+    import time
+
+    project_id = "appliedautonomybackend"
+    topic_name = "iot-test-topic"
+
+    publisher = pubsub_v1.PublisherClient()
+
+    def callback(message_future):
+        # When timeout is unspecified, the exception method waits indefinitely.
+        if message_future.exception(timeout=30):
+            print('Publishing message on {} threw an Exception {}.'.format(
+                topic_name, message_future.exception()))
+        else:
+            print(message_future.result())
 
     # Set up PIN 21 as input
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     GPIO.setup(21, GPIO.IN)	
 
+    #publish_begin = time.time()
+    
     # Every second read input
     while True:
         val = GPIO.input(21)
         print("GPIO21 = {}", format(val))
+
+        # Publish messages.
+        for n in range(num_messages):
+        data = u'GPIO21: {}'.format(val)
+        # Data must be a bytestring
+        data = data.encode('utf-8')
+        # When you publish a message, the client returns a future.
+        message_future = publisher.publish(
+            topic_path, data=data, timestamp=time.time(), description='IoT test GPIO telemetry')
+        message_future.add_done_callback(callback)
+        print('Published {} of message ID {}.'.format(data, future.result()))
+        
         time.sleep(1)
+    # [END telemetry]
+
 
 if __name__ == '__main__':
-    main()
+
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument('project_id', help='Your Google Cloud project ID')
+    parser.add_argument('topic_name', help='Your topic name')
+    parser.add_argument('subscription_name', help='Your subscription name')
+
+    args = parser.parse_args()
+
+    telemetry(args.project_id, args.topic_name, args.subscription_name, args.num_msgs)
