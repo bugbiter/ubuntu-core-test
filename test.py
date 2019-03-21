@@ -2,15 +2,14 @@
 # coding=utf-8
 
 import argparse
+from google.cloud import pubsub_v1
+import RPi.GPIO as GPIO
+import time
 
 __version__ = '0.0.2'
 
 def telemetry(project_id, topic_name, subscription_name):
     # [START telemetry]
-    from google.cloud import pubsub_v1
-    import RPi.GPIO as GPIO
-    import time
-
     # Set up PIN 21 as input
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
