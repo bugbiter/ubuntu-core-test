@@ -2,14 +2,16 @@
 # coding=utf-8
 
 import argparse
-from google.cloud import pubsub_v1
-import RPi.GPIO as GPIO
-import time
+
 
 __version__ = '0.0.2'
 
-def telemetry(project_id, topic_name, subscription_name):
+def telemetry(project_id, topic_name):
     # [START telemetry]
+    from google.cloud import pubsub_v1
+    import RPi.GPIO as GPIO
+    import time
+    
     # Set up PIN 21 as input
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
@@ -56,7 +58,6 @@ if __name__ == '__main__':
     )
     parser.add_argument('project_id', help='Your Google Cloud project ID')
     parser.add_argument('topic_name', help='Your topic name')
-
     args = parser.parse_args()
 
-    telemetry(args.project_id, args.topic_name, args.subscription_name, args.num_msgs)
+    telemetry(args.project_id, args.topic_name)

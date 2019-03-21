@@ -35,5 +35,5 @@ setup(
             'test = test:main'
         ]
     },
-    license='License :: OSI Approved :: MIT License',
+    license='License :: OSI Approved :: MIT License'
 )
