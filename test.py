@@ -24,8 +24,7 @@ def telemetry(project_id, topic_name):
     #topic_name = "test-iot-topic"
     
     publisher = pubsub_v1.PublisherClient()
-    subscriber = pubsub_v1.SubscriberClient()
-    topic_path = subscriber.topic_path(project_id, topic_name)
+    topic_path = publisher.topic_path(project_id, topic_name)
 
     def callback(message_future):
         # When timeout is unspecified, the exception method waits indefinitely.
@@ -38,15 +37,18 @@ def telemetry(project_id, topic_name):
     # Every second read input
     while True:
         val = GPIO.input(21)
-        print('GPIO21 = {}', format(val))
+        print('GPIO21 = {}'.format(val))
 
         # Publish messages.
-        data = u'GPIO21: {}'.format(val)
+        data = 'GPIO21: {}'.format(val)
         # Data must be a bytestring
         data = data.encode('utf-8')
         # When you publish a message, the client returns a future.
         message_future = publisher.publish(
-            topic_path, data=data) #, timestamp=time.time(), description='IoT test GPIO telemetry')
+            topic_path, 
+            data=data, 
+            timestamp=str(time.gmtime()).encode('utf-8'), 
+            description='IoT test GPIO telemetry')
         message_future.add_done_callback(callback)
         print('Published {} of message ID {}.'.format(data, message_future.result()))    
         time.sleep(1)
