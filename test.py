@@ -13,7 +13,8 @@ def telemetry(project_id, topic_name):
     import time
     import os
     
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "~/pubsubcredentials.json"
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./pubsubcredentials.json"
+    os.environ["GOOGLE_PUBSUB_CREDENTIALS"] = "./pubsubcredentials.json"
 
     # Set up PIN 21 as input
     GPIO.setmode(GPIO.BCM)
@@ -46,9 +47,9 @@ def telemetry(project_id, topic_name):
         # When you publish a message, the client returns a future.
         message_future = publisher.publish(
             topic_path, 
-            data=data, 
-            timestamp=str(time.gmtime()).encode('utf-8'), 
-            description='IoT test GPIO telemetry')
+            data=data) #, 
+            #timestamp=str(time.gmtime()).encode('utf-8'), 
+            #description='IoT test GPIO telemetry')
         message_future.add_done_callback(callback)
         print('Published {} of message ID {}.'.format(data, message_future.result()))    
         time.sleep(1)
