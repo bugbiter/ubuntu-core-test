@@ -13,7 +13,7 @@ def telemetry(project_id, topic_name):
     import time
     import os
     
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "pubsubcredentials.json"
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "~/pubsubcredentials.json"
 
     # Set up PIN 21 as input
     GPIO.setmode(GPIO.BCM)
