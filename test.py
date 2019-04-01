@@ -2,20 +2,26 @@
 # coding=utf-8
 
 import argparse
-
-
+#import logging
+#import logging.config
+    
 __version__ = '0.0.2'
 
 def telemetry(project_id, topic_name):
     # [START telemetry]
+
     from google.cloud import pubsub_v1
     import RPi.GPIO as GPIO
     import time
     import os
     
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./pubsubcredentials.json"
-    os.environ["GOOGLE_PUBSUB_CREDENTIALS"] = "./pubsubcredentials.json"
-
+    #if os.environ.get('SNAP_DATA')=='True':
+    #    logging.config.fileConfig('$SNAP_DATA/logging.conf')
+    #else:
+    #    logging.config.fileConfig('logging.conf')
+    if os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')=='True':
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "home/haakonsbakken/pubsubcredentials.json"
+    
     # Set up PIN 21 as input
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
@@ -47,9 +53,9 @@ def telemetry(project_id, topic_name):
         # When you publish a message, the client returns a future.
         message_future = publisher.publish(
             topic_path, 
-            data=data) #, 
-            #timestamp=str(time.gmtime()).encode('utf-8'), 
-            #description='IoT test GPIO telemetry')
+            data=data, 
+            timestamp=str(time.gmtime()).encode('utf-8'), 
+            description='IoT test GPIO telemetry')
         message_future.add_done_callback(callback)
         print('Published {} of message ID {}.'.format(data, message_future.result()))    
         time.sleep(1)

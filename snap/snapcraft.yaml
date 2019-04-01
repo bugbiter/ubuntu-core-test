@@ -17,7 +17,7 @@ apps:
   iot-labs-uc-test:
     command: bin/test
     # daemon: simple
-    plugs: [gpio-memory-control] 
+    plugs: [gpio-memory-control, home] 
 
 parts:
   testpart:
@@ -28,3 +28,8 @@ parts:
     override-build: |
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin
       cp test $SNAPCRAFT_PART_INSTALL/bin/test
+
+#passthrough:
+#  layout:
+#    /home/haakonsbakken/pubsubcredentials.json:
+#      bind-file: $SNAP_DATA/pubsubcredentials.json
