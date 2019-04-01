@@ -14,7 +14,12 @@ def telemetry(project_id, topic_name):
     import RPi.GPIO as GPIO
     import time
     import os
+    import wget
     
+    print('Beginning file download with wget module')
+    url = 'http://iot-labs.no/img/iotlabs_roundmesh.png'
+    wget.download(url, '/home/haakonsbakken/iot-labs.png')
+
     #if os.environ.get('SNAP_DATA')=='True':
     #    logging.config.fileConfig('$SNAP_DATA/logging.conf')
     #else:

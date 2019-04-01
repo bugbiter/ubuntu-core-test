@@ -13,6 +13,10 @@ architectures:
   - build-on: armhf
     run-on: armhf
 
+#hooks:
+#  install:
+#    plugs: [gpio-memory-control, home]
+
 apps:
   iot-labs-uc-test:
     command: python3 test.py appliedautonomybackend test-iot-topic
@@ -23,7 +27,7 @@ parts:
   testpart:
     plugin: python
     python-version: python3
-    python-packages: [RPi.GPIO, google-cloud-pubsub==0.39.1]
+    python-packages: [RPi.GPIO, google-cloud-pubsub==0.39.1, wget]
     source: .
     #override-build: |
       #make test

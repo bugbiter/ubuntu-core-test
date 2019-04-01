@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+#snapctl set :gpio-memory-control
+#snapctl set :home
