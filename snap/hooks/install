@@ -2,5 +2,3 @@
 
 #echo "project_id appliedautonomybackend" > "$SNAP_DATA/telemetry.conf"
 #echo "topic_name test-iot-topic" > "$SNAP_DATA/telemetry.conf"
-
-export GOOGLE_APPLICATION_CREDENTIALS=/home/haakonsbekken/pubsubcredentials.json

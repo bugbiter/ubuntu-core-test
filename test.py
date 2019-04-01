@@ -20,7 +20,7 @@ def telemetry(project_id, topic_name):
     #else:
     #    logging.config.fileConfig('logging.conf')
     if 'GOOGLE_APPLICATION_CREDENTIALS' in os.environ:
-        print('$GOOGLE_APPLICATION_CREDENTIALS: {}'.format(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) )
+        print('$GOOGLE_APPLICATION_CREDENTIALS: {}'.format(os.environ['GOOGLE_APPLICATION_CREDENTIALS']))
     else:
         print('Could not find $GOOGLE_APPLICATION_CREDENTIALS')
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/haakonsbakken/pubsubcredentials.json'
