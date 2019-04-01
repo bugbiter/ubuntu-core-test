@@ -19,8 +19,11 @@ def telemetry(project_id, topic_name):
     #    logging.config.fileConfig('$SNAP_DATA/logging.conf')
     #else:
     #    logging.config.fileConfig('logging.conf')
-    if os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')=='True':
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "home/haakonsbakken/pubsubcredentials.json"
+    if 'GOOGLE_APPLICATION_CREDENTIALS' in os.environ:
+        print('$GOOGLE_APPLICATION_CREDENTIALS: {}'.format(os.environ['GOOGLE_APPLICATION_CREDENTIALS']) )
+    else:
+        print('Could not find $GOOGLE_APPLICATION_CREDENTIALS')
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/haakonsbakken/pubsubcredentials.json'
     
     # Set up PIN 21 as input
     GPIO.setmode(GPIO.BCM)
