@@ -3,7 +3,7 @@
 
 from setuptools import setup
 
-package_name = 'iot-labs-uc-test'
+package_name = 'aatelemetry'
 filename = package_name + '.py'
 
 def get_version():
@@ -32,7 +32,7 @@ setup(
     py_modules=[package_name],
     entry_points={
         'console_scripts': [
-            'iot-labs-uc-test = iot-labs-uc-test:main'
+            'aatelemetry = aatelemetry:main'
         ]
     },
     license='License :: OSI Approved :: MIT License'
