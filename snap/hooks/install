@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+# Initialize parameters to default values
+snapctl set credentials_path=/some/path/to/file
+snapctl set project_id=myproject
+snapctl set topic_name=mytopic

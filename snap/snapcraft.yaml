@@ -18,7 +18,7 @@ architectures:
 
 apps:
   iot-labs-uc-test:
-    command: aatelemetry #python3 iot-labs-uc-test.py appliedautonomybackend test-iot-topic
+    command: aatelemetry #python3 aatelemetry.py appliedautonomybackend test-iot-topic
     # daemon: simple
     plugs: [gpio-memory-control, home, network] 
 

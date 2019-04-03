@@ -1,16 +1,26 @@
 #!/bin/sh -e
 
-credentials_path="$(snapctl get credentials_path)"
-project_id="$(snapctl get project_id)"
-topic_name="$(snapctl get topic_name)"
-
-if [ -z "$credentials_path" -o -z "$project_id" -o -z "$topic_name" ]; then
-    echo "credentials_path, project_id, and topic_name are required parameters"
-    exit 1
+if ! credentials_path=$(snapctl get credentials_path); then
+    echo "using default credentials_path"
+    credentials_path=""
 fi
+if ! project_id=$(snapctl get project_id); then
+    echo "using default project_id"
+    project_id=""
+fi
+if ! topic_name=$(snapctl get topic_name); then
+    echo "using default topic_name"
+    topic_name=""
+fi
+
+#if [ -z "$credentials_path" -o -z "$project_id" -o -z "$topic_name" ]; then
+#    echo "credentials_path, project_id, and topic_name are required parameters"
+#    exit 1
+#fi
 
 #mkdir -m 0600 $SNAP_DATA/parameters
 touch $SNAP_DATA/parameters.conf
+chmod a+x $SNAP_DATA/parameters.conf
 echo "[telemetry]" > "$SNAP_DATA/parameters.conf"
 echo "credentials_path $credentials_path" >> "$SNAP_DATA/parameters.conf"
 echo "project_id $project_id" >> "$SNAP_DATA/parameters.conf"

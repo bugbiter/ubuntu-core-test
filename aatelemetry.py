@@ -7,8 +7,8 @@ import argparse
     
 __version__ = '0.0.3'
 
-def telemetry(project_id, topic_name):
-    # [START telemetry]
+def main():
+    # [START main]
 
     import configparser
     from google.cloud import pubsub_v1
@@ -49,8 +49,8 @@ def telemetry(project_id, topic_name):
     GPIO.setwarnings(False)
     GPIO.setup(21, GPIO.IN)	
 
-    #project_id = "appliedautonomybackend"
-    #topic_name = "test-iot-topic"
+    project_id = "appliedautonomybackend"
+    topic_name = "test-iot-topic"
     
     publisher = pubsub_v1.PublisherClient()
     topic_path = publisher.topic_path(project_id, topic_name)
@@ -81,17 +81,18 @@ def telemetry(project_id, topic_name):
         message_future.add_done_callback(callback)
         print('Published {} of message ID {}.'.format(data, message_future.result()))    
         time.sleep(1)
-    # [END telemetry]
+    # [END main]
 
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser(
-        description=__doc__,
-        formatter_class=argparse.RawDescriptionHelpFormatter
-    )
-    parser.add_argument('project_id', help='Your Google Cloud project ID')
-    parser.add_argument('topic_name', help='Your topic name')
-    args = parser.parse_args()
+    #parser = argparse.ArgumentParser(
+    #    description=__doc__,
+    #    formatter_class=argparse.RawDescriptionHelpFormatter
+    #)
+    #parser.add_argument('project_id', help='Your Google Cloud project ID')
+    #parser.add_argument('topic_name', help='Your topic name')
+    #args = parser.parse_args()
 
-    telemetry(args.project_id, args.topic_name)
+    #telemetry(args.project_id, args.topic_name)
+    main()
