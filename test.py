@@ -5,30 +5,43 @@ import argparse
 #import logging
 #import logging.config
     
-__version__ = '0.0.2'
+__version__ = '0.0.3'
 
 def telemetry(project_id, topic_name):
     # [START telemetry]
 
+    import configparser
     from google.cloud import pubsub_v1
     import RPi.GPIO as GPIO
     import time
     import os
-    import wget
+    #import wget
     
-    print('Beginning file download with wget module')
-    url = 'http://iot-labs.no/img/iotlabs_roundmesh.png'
-    wget.download(url, '/home/haakonsbakken/iot-labs.png')
+    configParser = configparser.RawConfigParser()  
+    
+    #print('Beginning file download with wget module')
+    #url = 'http://iot-labs.no/img/iotlabs_roundmesh.png'
+    #wget.download(url, '/home/haakonsbakken/iot-labs.png')
 
-    #if os.environ.get('SNAP_DATA')=='True':
+    if os.environ.get('SNAP_DATA')=='True':
+        configFilePath = r'$SNAP_DATA/parameters.conf'
+        try:
+            configParser.read(configFilePath)
+            credentialsPath = configParser.get('telemetry', 'credentials_path')
+            os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentialsPath
+        except:
+            os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/haakonsbakken/pubsubcredentials.json'
     #    logging.config.fileConfig('$SNAP_DATA/logging.conf')
     #else:
     #    logging.config.fileConfig('logging.conf')
+
+    #sanity check
     if 'GOOGLE_APPLICATION_CREDENTIALS' in os.environ:
         print('$GOOGLE_APPLICATION_CREDENTIALS: {}'.format(os.environ['GOOGLE_APPLICATION_CREDENTIALS']))
     else:
         print('Could not find $GOOGLE_APPLICATION_CREDENTIALS')
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/haakonsbakken/pubsubcredentials.json'
+        #should exit!
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/haakonsbakken/pubsubcredentials.json'
     
     # Set up PIN 21 as input
     GPIO.setmode(GPIO.BCM)

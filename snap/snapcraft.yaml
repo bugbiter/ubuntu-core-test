@@ -7,7 +7,7 @@ description: |
   MQTT bridge.
 
 grade: devel
-confinement: devmode # use 'strict' once you have the right plugs and slots
+confinement: strict # use 'strict' once you have the right plugs and slots
 
 architectures:
   - build-on: armhf
@@ -27,7 +27,7 @@ parts:
   testpart:
     plugin: python
     python-version: python3
-    python-packages: [RPi.GPIO, google-cloud-pubsub==0.39.1, wget]
+    python-packages: [RPi.GPIO, google-cloud-pubsub==0.39.1]
     source: .
     #override-build: |
       #make test
