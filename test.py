@@ -28,9 +28,10 @@ def telemetry(project_id, topic_name):
         try:
             configParser.read(configFilePath)
             credentialsPath = configParser.get('telemetry', 'credentials_path')
+            print('Read credentials path from {}: {}'.format(configFilePath, credentialsPath))
             os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credentialsPath
         except:
-            os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/haakonsbakken/pubsubcredentials.json'
+            print('Exception when reading parameters from {}'.format(configFilePath))
     #    logging.config.fileConfig('$SNAP_DATA/logging.conf')
     #else:
     #    logging.config.fileConfig('logging.conf')

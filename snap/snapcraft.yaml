@@ -21,7 +21,7 @@ apps:
   iot-labs-uc-test:
     command: python3 test.py appliedautonomybackend test-iot-topic
     # daemon: simple
-    plugs: [gpio-memory-control, home] 
+    plugs: [gpio-memory-control, home, network-bind] 
 
 parts:
   testpart:

@@ -4,4 +4,8 @@
 /prime
 /stage
 /snap/.snapcraft
+env/
+mf.py
+test.egg-info/
+__pycache__/
 pubsubcredentials.json
