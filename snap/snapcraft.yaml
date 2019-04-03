@@ -14,11 +14,11 @@ architectures:
 
 #hooks:
 #  install:
-#    plugs: [gpio-memory-control, home]
+#    plugs: [home]
 
 apps:
   iot-labs-uc-test:
-    command: aatelemetry #python3 aatelemetry.py appliedautonomybackend test-iot-topic
+    command: aatelemetry
     # daemon: simple
     plugs: [gpio-memory-control, home, network] 
 
@@ -27,7 +27,7 @@ parts:
     source: .
     plugin: python
     python-version: python3
-    python-packages: [RPi.GPIO, google-cloud-pubsub==0.39.1]
+    python-packages: [gpiozero, google-cloud-pubsub==0.39.1]
     #override-build: |
       #make test
       #mkdir -p $SNAPCRAFT_PART_INSTALL/bin
