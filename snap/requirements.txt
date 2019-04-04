@@ -1,3 +1,2 @@
-#RPi.GPIO=0.6.5
-gpiozero
+RPi.GPIO=0.6.5
 google-cloud-pubsub==0.39.1

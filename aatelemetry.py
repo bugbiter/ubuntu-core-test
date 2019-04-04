@@ -12,8 +12,8 @@ def main():
 
     import configparser
     from google.cloud import pubsub_v1
-    #import RPi.GPIO as GPIO
-    import gpiozero as io
+    import RPi.GPIO as GPIO
+    #import gpiozero as io
     import time
     import os
     #import wget
@@ -46,10 +46,10 @@ def main():
         os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/haakonsbakken/pubsubcredentials.json'
     
     # Set up PIN 21 as input
-    #GPIO.setmode(GPIO.BCM)
-    #GPIO.setwarnings(False)
-    #GPIO.setup(21, GPIO.IN)
-    pin = io.Button("GPIO21")
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(21, GPIO.IN)
+    #pin = io.Button("GPIO21")
 
     project_id = "appliedautonomybackend"
     topic_name = "test-iot-topic"
@@ -67,8 +67,8 @@ def main():
 
     # Every second read input
     while True:
-        #val = GPIO.input(21)
-        val = pin.is_pressed
+        val = GPIO.input(21)
+        #val = pin.is_pressed
         print('GPIO21 = {}'.format(val))
 
         # Publish messages.

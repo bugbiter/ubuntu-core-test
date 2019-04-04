@@ -27,7 +27,7 @@ parts:
     source: .
     plugin: python
     python-version: python3
-    python-packages: [gpiozero, google-cloud-pubsub==0.39.1]
+    python-packages: [RPi.GPIO, google-cloud-pubsub==0.39.1]
     #override-build: |
       #make test
       #mkdir -p $SNAPCRAFT_PART_INSTALL/bin
